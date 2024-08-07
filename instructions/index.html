@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructions | ClimateCompare</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+    :root {
+      --primary: #00a2ff;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--primary);
+      margin: 0;
+    }
+
+    section#note {
+      background-color: #ffffff;
+      margin: 0 10vw;
+      padding: 1rem 2rem;
+    }
+
+    section#note>section {
+      margin-bottom: 2rem;
+      padding-left: 1rem;
+      border-left: 5px solid #ccc;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    ol,
+    ul {
+      line-height: 1.5;
+    }
+
+    li {
+      margin: 1rem 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 1px solid black;
+    }
+
+    h3 {
+      color: var(--primary)
+    }
+
+    span.label {
+      background-color: var(--primary);
+      padding: 0 10px;
+      color: white;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    span.important-tag {
+      background-color: #ff0000;
+      padding: 0 10px;
+      color: white;
+      font-weight: bold;
+    }
+
+    p.important-tag {
+      background-color: #ff0000;
+      padding: 0 10px;
+      color: white;
+      font-weight: bold;
+    }
+
+    span.important {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    div#image-container img {
+      height: 300px;
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+
+    code,
+    pre {
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #ccc;
+      padding: 0 5px;
+    }
+
+    p.muted {
+      color: #777;
+      margin-top: 5px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      section#note {
+        margin: 0;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+
+<body>
+  <section id="note">
+    <header>
+      <h1>Instructions for JavaScript (React/Node) Technical Assessment</h1>
+      <p><span class="label">Goal</span>Make a full-stack climate comparision web application - "Climate Compare" -
+        using
+        Node.js, Express
+        and React.
+      </p>
+      <p><span class="label">Score</span>Out of 100 - for code correctness, code quality, efficency and frontend
+        design.</p>
+      <p><span class="label">Recommended Time</span>4 hours</p>
+      <div id="image-container">
+        <img src="./images/image_1.png" alt="ClimateCompare dashboard without data" width="500">
+        <img src="./images/image_2.png" alt="ClimateCompare dashboard with data" width="500">
+      </div>
+    </header>
+
+    <section>
+      <h2>Project Details</h2>
+      <h3>Description</h3>
+      <ul>
+        <li>Climate Compare is a simple full-stack single-page web application designed to compare climate data between
+          two
+          countries.
+        <li>Users can
+          select countries from dropdown menus, and the app displays current climate information such as temperature and
+          rainfall. It also shows a weather forecast for the next three days for both selected countries.</li>
+        </li>
+        <li>The data for this to work is sourced from an API which you will write using Node.js + Express - which will
+          serve
+          dummy climate data according the specifications we provide.</li>
+        <li>You will <b>not have to work with a database of any kind</b> for this assessment.</li>
+        <li><b>Do not use any additional frameworks / libraries</b> to accomplish the tasks given below, besides those
+          in the <code>package.json</code> files.
+        </li>
+        <li>Try to attempt the tasks in the <b>given order</b> in order to best understand the app's features,
+          requirements and flow.</li>
+      </ul>
+
+      <h3>Tech Stack</h3>
+      <ul>
+        <li><span class="label">Languages</span>Javascript, JSX and CSS.</li>
+        <li><span class="label">Frontend</span>React w/ Vite as the build tool.</li>
+        <li><span class="label">Backend</span>Node.js w/ Express + JWTs for token-based authentication + NodeCache for
+          caching data in-between requests.</li>
+        <li><span class="label">Version Control</span>Git and Github is used to host this project's respository and
+          for submitting your work.</li>
+        <li>Since this assessment will primarily use Git & GitHub, you will need <b>a GitHub account</b> and some
+          experience working with the Git CLI.</li>
+      </ul>
+
+    </section>
+
+    <section>
+      <h2>Task 1 - Setting up your development environment</h2>
+      <span class="label">10 marks</span>
+      <ol>
+        <li>Fork <a href="https://github.com">this GitHub respository</a> onto your personal GitHub account and <b>clone
+            it
+            to your machine</b> - this folder contains the skeleton for the project you will
+          be
+          working on. <span class="important">The time allocation (4 hours) will start from the point you fork this
+            repository.</span></li>
+        <li>Navigate to this repo's folder from your machine. Inside this folder you will see two additional folders -
+          namely
+          <code>frontend/</code> and <code>backend/</code>. This is where you will spend most of your time writing code.
+          <ul>
+            <li><b>Ensure that you only edit / append code to the
+                respective files within these folders which have been specified in the instructions. Do not change any
+                other files, as this
+                may result in our test scripts failing to score your submission</b>.</li>
+            <li>Your final submission will be made as a <b>pull request</b> to <a href="https://github.com">this Github
+                repository.</a> You will receive your score as a <b>comment to this pull request</b> on GitHub itself.
+            </li>
+            <li>Feel free to commit and push regularly to your personal fork of our repository. However, only submit a
+              pull request to our GitHub repository <b>after you complete the entire assessment.</b>
+            </li>
+          </ul>
+        </li>
+        <li>Open the repo's folder using your favorite text editor / IDE.</li>
+        <li>Run <code>npm i</code> via the terminal on both the <code>backend/</code> and <code>frontend/</code> folders
+          to install the
+          necessary packages.</li>
+        <li>Create an environment variables file with the name <code>.env</code> in your <code>backend/</code>
+          folder. Copy and paste the following variables into this file:
+          <pre><code>PORT=3000
+SECRET_KEY=*generate-and-paste-your-own-secret-key-here*</code></pre>
+          You can run the command <code>node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"</code>
+          on your terminal to generate a secret key for encrypting your JWTs.
+        </li>
+        <span class="important">Task 1 is now complete. You may now move on to Task 2.</span>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Task 2 - Completing the backend routes (i.e. API)</h2>
+      <span class="label">20 marks</span>
+      <ol>
+        <li>Navigate to the <code>backend/src</code> folder and open <code>index.js</code>, which is where you will
+          write
+          your code for this task.</li>
+        <li>Write code to initialize an Express instance, and configure it to use JSON and CORS middleware.
+          <p class="muted">Write code for this task within the TASK 2.2 comment fence in <code>index.js</code></p>
+        </li>
+        <li>Use the <code>dotenv</code> module to load all environment variables and initialize a <code>NodeCache</code>
+          instance, which we will use to cache some of our climate data on the server side.
+          <p class="muted">Write code for this task within the TASK 2.3 comment fence in <code>index.js</code></p>
+        </li>
+        <li>Complete the <code>verifyToken</code> JavaScript function - used as middleware for JWT verification, which:
+          <ul>
+            <li>Reads the request headers for a <code>Bearer: token</code> authentication header.</li>
+            <li>Extracts the authentication header's JWT.</li>
+            <li>Returns a suitably named <code>403</code> error response if the token is not provided.</li>
+            <li>Verifies the token via the <code>jsonwebtoken</code> library's <code>verify</code> function and proceeds
+              to the next route.</li>
+            <li>Returns a suitably named <code>500</code> error response if JWT verification failed.</li>
+          </ul>
+          Note that the JWT was initially signed with the <b>user's username.</b>
+          <p class="muted">Write code for this task within the TASK 2.4 comment fence in <code>index.js</code></p>
+        </li>
+        <li>Write code for the <b>unprotected</b> <code>/login</code> POST route, which:
+          <ul>
+            <li>Reads the user's username and password from the request body.</li>
+            <li>Returns a suitably named <code>401</code> error response if those credentials are missing or if they
+              don't match those
+              within the <code>USER</code> object saved in <code>src/data.js</code>.</li>
+            <li>Signs and responds with a token that expires in <code>1 day</code> - in JSON format.</li>
+          </ul>
+          Note that the JWT should be signed with the <b>user's username</b> using the <code>secretKey</code> read
+          from
+          the <code>.env</code> file.
+          <p class="muted">Write code for this task within the TASK 2.5 comment fence in <code>index.js</code></p>
+        </li>
+        <li>Write code for a <b>protected</b> <code>/climate/:country</code> GET route, which:
+          <ul>
+            <li>Reads the name of a country (i.e. <code>country</code>) provided in the request's parameters.</li>
+            <li>Reads the numbers of days to forecast the climate for this country (i.e. <code>forecastDays</code>)
+              provided in the request's query parameters.</li>
+            <li>Returns suitably named <code>403</code> error response if the aforementioned request parameters are not
+              provided.</li>
+            <li>Returns a suitably named <code>404</code> error response if the provided country is not found in the
+              <code>COUNTRIES</code> array saved in <code>src/data.js</code>.
+            </li>
+            <li>Otherwise, responds with dummy climate data in JSON format by calling the
+              <code>generateClimateData</code> function found in <code>src/data.js</code>.
+            </li>
+            <li>In addition, you must implement functionality to cache this result using <code>NodeCache</code>, such
+              that
+              subsequent requests to the same country must return the same dummy climate data.</li>
+          </ul>
+          You will implement the <code>generateClimateData</code> function in the next task. At the moment, use its
+          prototype for completing this task.
+          <p class="muted">Write code for this task within the TASK 2.6 comment fence in <code>index.js</code></p>
+        </li>
+        <span class="important">Task 2 is now complete. Feel free to test your code using <code>npm run
+            dev</code> on the <code>backend/</code> folder. Commit and push your work to your personal forked
+          repository. You may now move on to Task 3.</span>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Task 3 - Completing the backend/frontend helper functions</h2>
+      <span class="label">20 marks</span>
+      <ol>
+        <li>Navigate to the <code>backend/src</code> folder and open <code>helpers.js</code>, and navigate to the <code>frontend/lib</code> folder and open its respective <code>helpers.js</code> - these two files are where you will
+          write
+          your code for this task.</li>
+        <li>Complete the <code>generateClimateData</code> JavaScript function found in <code>backend/src/helpers.js</code>. The purpose of this function is to:
+          <ul>
+            <li>
+              Dynamically generate simulated climate data for a specified number of forecast days.
+            </li>
+            <li>
+              Provide random but plausible weather forecasts, which include rainfall (mm)
+              and
+              temperature (°C) predictions.
+            </li>
+          </ul>
+          This function should specifically:
+          <ul>
+            <li>Determine whether the temperature should rise or fall over the forecast period using a random boolean.
+              A true value indicates that the temperature will decrease over time, while false implies an
+              increase.</li>
+            <li>Randomly generate an initial rainfall value between 50mm and 500m.</li>
+            <li>Randomly generate an initial temperature value between -10°C and 34°C.</li>
+            <li>Return an object containing the initial rainfall and temperature, along with an array of forecast data
+              for the specified number of days. Each day's forecast includes:
+              <ul>
+                <li><b>Rainfall</b>: Adjusts the initial rainfall by a constant rise or fall, determined by the rise
+                  variable and the constant <code>RAINFALL_RISE</code>. The adjustment is cumulative over the days.</li>
+                <li><b>Temperature</b>: Adjusts the initial temperature by a constant rise or fall, <b>inversely</b>
+                  related to
+                  the rise variable and a constant <code>TEMPERATURE_RISE</code>. This adjustment is also cumulative
+                  over the days.
+                </li>
+              </ul>
+            </li>
+          </ul>
+          An example return from this function for <b>3 days of forecast</b> is as follows:
+          <pre><code>{
+  "rainfall": 300,
+  "temperature": 17,
+  "forecast": [
+    {
+      "rainfall": 305,
+      "temperature": 14
+    },
+    {
+      "rainfall": 310,
+      "temperature": 11
+    },
+    {
+      "rainfall": 315,
+      "temperature": 8
+    }
+  ]
+}</code></pre>
+          <p class="muted">Write code for this task within the TASK 3.2 comment fence in <code>backend/src/helpers.js</code></p>
+        </li>
+        <li>Complete the <code>makeReadable</code> JavaScript function found in <code>frontend/lib/helpers.js</code>. The purpose of this function is to:</li>
+        <ul>
+          <li>Convert hyphenated text into a more readable format with spaces.</li>
+          <li>Capitalize the first letter of each word in this hyphenated text.</li>
+          <li>Return this final "readable" text.</li>
+        </ul>
+        For example, for the input <code>"this-is-hyphenated-text"</code>, the function must return <code>"This Is Hyphenated Text"</code>
+        <p class="muted">Write code for this task within the TASK 3.3 comment fence in <code>frontend/lib/helpers.js</code></p>
+      </li>
+      <span class="important">Task 3 is now complete. Feel free to test your code using <code>npm run
+        dev</code> on the <code>backend/</code> folder. Commit and push your work to your personal forked
+      repository. You may now move on to Task 4.</span>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Task 4 - Completing the frontend</h2>
+      <span class="label">50 marks</span>
+      <ol>
+        <li>Navigate to the <code>frontend/src</code> folder and open <code>App.jsx</code>, which is where you will
+          write
+          your code for this task. <b>However, you are free to split the content of <code>App.jsx</code> into multiple component files for better seperation-of-concerns</b>.</li>
+          <li>In this task, you will be connecting the backend API you just created and rendering the returned climate data in a meaningful format to the end user.</li>
+          <li>Although the <b>styles, design and placement</b> of the frontend is completely upto you, you must complete the following requirements. An annotated image of our frontend is additionally given for guidance, but need not be strictly followed:
+            <ul>
+          <img src="./images/image_3.png" width="600px" style="margin-top: 30px;">
+
+            <li>On loading the frontend, authenticate the user via the <code>/login</code> API route - by providing the pre-defined username and password (found in <code>backend/src/data.js</code>) - and obtain and save a JWT.</li>
+            <li>Use this JWT to query the pre-defined & protected <code>countries/</code> API route and populate both select boxes with the returned list of countries (made readable using the <code>makeReadable</code> function), along with a "None" value to depict no country being selected. The initial value of the select must be "None". <span class="important-tag">Labelled A</span></li>
+            <li>The message "Please select two different countries to compare climates" must be displayed below the section <span class="important-tag">Labelled A</span> if either country is unselected (i.e. "None") or if both selected countries are the same. <span class="important-tag">Labelled B</span></li>
+            <li>If two correct countries are selected, the respective countrys' climate data must be fetched via the protected <code>climate/:country</code> API route, with the <span class="important">query parameter <code>forecastDays</code> being set to 3</span>. The resulting JSON is saved and displayed as a table with:
+              <ul>
+                <li>The first column listing the names of the 2 countries selected (made readable using the <code>makeReadable</code> function). <span class="important-tag">Labelled C</span></li>
+                <li>The second column listing the temperatures of the 2 countries selected, with "°C" suffixes. <span class="important-tag">Labelled D</span></li>
+                <li>The third column listing the rainfall of the 2 countries selected, with "mm" suffixes. <span class="important-tag">Labelled E</span></li>
+                <li>The larger temperature / rainfall value being annotated with a special symbol (we have used <a href="https://lucide.dev/icons/">LucideIcon</a>'s <code>CloudRain</code> and <code>Triangle</code> icons for this) in its table cell. <span class="important-tag">Labelled F</span></li>
+                <li>The forecasted temperature and rainfall values being listed in 3 columns (prefixed with "°C" and "mm" respectively), with each column having a header <b>with today's, tomorrow's and the day-after's date</b> in <code>en-US</code> format. <span class="important-tag">Labelled G</span></li>
+              </ul>
+            </li>
+            <li>Use suitable column headings for the table you designed in the previous step and use state wherever appropriate.</li>
+            <li>Feel free to add your CSS to the <code>App.css</code> file.</li>
+          </ul>
+          </li>
+          <li><b>This dashboard must be interactive</b> - meaning any change to the select boxes (i.e. selecting a different country) must automatically trigger an API call to update the respective climate data.</li>
+          <p class="muted">Write code for this task within the TASK 4 comment fence in <code>App.jsx</code> or in multiple <code>jsx</code> component files.</p>
+        </li>
+        <span class="important">Task 4 is now complete. Feel free to test your code using <code>npm run
+          dev</code> on the <code>frontend/</code> folder. Commit and push your work to your personal forked
+        repository.</span>
+</ol>
+        <p class="important-tag">Congratulations on completing this assessment! You may now submit a pull request (ensuring that all local changes have been pushed) to the main repository from your forked repository to confirm your submission.
+        </p>
+        <p class="important-tag">Make sure to include your name in the pull request message, along with a README.md if you wish to explain / comment on any of the solutions for the previous tasks.</p>
+    </section>
+  </section>
+  <script>hljs.highlightAll();</script>
+</body>
+
+</html>

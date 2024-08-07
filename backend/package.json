@@ -1,0 +1,20 @@
+{
+  "name": "weather-comparision-api",
+  "version": "1.0.0",
+  "description": "An API that randomly generates weather data for the climate-compare frontend",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node src/index.js"
+  },
+  "author": "TeamsSquared",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "node-cache": "^5.1.2"
+  }
+}

@@ -1,0 +1,12 @@
+/* Given below are CSS variables for the colors used in our version of ClimateCompare */
+/* Feel free to use them, or replace them with your own */
+:root {
+  --primary: #00a2ff;
+  --primary-dark: #006cff;
+  --primary-foreground: #ffffff;
+  --border: #cccccc;
+  --muted: #777777;
+  --shadow: #00000033;
+}
+
+/* WRITE YOUR CSS RULES BELOW THIS LINE */
