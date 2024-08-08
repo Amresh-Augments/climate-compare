@@ -4,10 +4,17 @@ import { useEffect, useState } from "react";
 import { Select, Table, message } from "antd";
 import axios from "axios";
 import { makeReadable } from "../lib/helpers";
+import { Typography, Row, Col } from "antd";
 
 const { Option } = Select;
 const MAX_FORECAST_DAYS = 3;
 
+const { Title, Text } = Typography;
+/**
+ * The main component of the Climate Compare application.
+ *
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
   const [jwt, setJwt] = useState(null);
   const [countries, setCountries] = useState([]);
@@ -213,39 +220,56 @@ function App() {
   };
 
   return (
-    <div>
-      <div>
-        <Select
-          value={country1}
-          onChange={(value) => handleCountryChange(value, setCountry1)}
-          style={{ width: 200, marginRight: 20 }}
-        >
-          <Option value="None">None</Option>
-          {countries.map((country) => (
-            <Option key={country} value={country}>
-              {makeReadable(country)}
-            </Option>
-          ))}
-        </Select>
-        <Select
-          value={country2}
-          onChange={(value) => handleCountryChange(value, setCountry2)}
-          style={{ width: 200 }}
-        >
-          <Option value="None">None</Option>
-          {countries.map((country) => (
-            <Option key={country} value={country}>
-              {makeReadable(country)}
-            </Option>
-          ))}
-        </Select>
-      </div>
-      <div className="message">
-        {country1 === "None" || country2 === "None" || country1 === country2 ? (
-          <p>Please select two different countries to compare climates</p>
-        ) : null}
-      </div>
-      {renderTable()}
+    <div className="app">
+      <Row justify="center" style={{ marginBottom: 20 }}>
+        <Title level={2} style={{ color: "#1DA57A" }}>
+          Climate Compare
+        </Title>
+      </Row>
+      <Row justify="center" style={{ marginBottom: 20 }}>
+        <Col>
+          <Select
+            value={country1}
+            onChange={(value) => handleCountryChange(value, setCountry1)}
+            style={{ width: 200, marginRight: 20 }}
+          >
+            <Option value="None">None</Option>
+            {countries.map((country) => (
+              <Option key={country} value={country}>
+                {makeReadable(country)}
+              </Option>
+            ))}
+          </Select>
+        </Col>
+        <Col>
+          <Select
+            value={country2}
+            onChange={(value) => handleCountryChange(value, setCountry2)}
+            style={{ width: 200 }}
+          >
+            <Option value="None">None</Option>
+            {countries.map((country) => (
+              <Option key={country} value={country}>
+                {makeReadable(country)}
+              </Option>
+            ))}
+          </Select>
+        </Col>
+      </Row>
+      <Row justify="center" style={{ marginBottom: 20 }}>
+        <Col>
+          {country1 === "None" ||
+          country2 === "None" ||
+          country1 === country2 ? (
+            <Text type="danger">
+              Please select two different countries to compare climates
+            </Text>
+          ) : null}
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col span={20}>{renderTable()}</Col>
+      </Row>
     </div>
   );
 }
