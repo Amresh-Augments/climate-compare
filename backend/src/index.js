@@ -22,6 +22,9 @@ app.use(express.json());
 
 // CODE FOR TASK 2.3 -------------------------------------------
 
+dotenv.config();
+const cache = new NodeCache();
+
 // END OF CODE FOR TASK 2.3 ------------------------------------
 
 const port = process.env.PORT || 3000;
