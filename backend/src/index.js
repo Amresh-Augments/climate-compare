@@ -82,6 +82,30 @@ app.post('/login', (req, res) => {
 
 app.get('/climate/:country', verifyToken, (req, res) => {
   // CODE FOR TASK 2.6 -------------------------------------------
+
+  const { country } = req.params;
+  const forecastDays = parseInt(req.query.forecastDays, 10);
+
+  if (!country || isNaN(forecastDays)) {
+    return res
+      .status(403)
+      .json({ error: 'Country and forecastDays parameters are required' });
+  }
+
+  if (!COUNTRIES.includes(country)) {
+    return res.status(404).json({ error: 'Country not found' });
+  }
+
+  const cacheKey = `${country}-${forecastDays}`;
+  if (cache.has(cacheKey)) {
+    return res.json(cache.get(cacheKey));
+  }
+
+  const climateData = generateClimateData(forecastDays);
+  cache.set(cacheKey, climateData, 86400); // Cache for 1 day (86400 seconds)
+
+  return res.json(climateData);
+
   // END OF CODE FOR TASK 2.6 ------------------------------------
 });
 
