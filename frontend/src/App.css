@@ -10,3 +10,55 @@
 }
 
 /* WRITE YOUR CSS RULES BELOW THIS LINE */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100vh; /* Full viewport height */
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.country-selection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.country-selection div {
+  margin: 0 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+select {
+  padding: 5px;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: lightblue;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
