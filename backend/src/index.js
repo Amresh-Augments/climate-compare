@@ -54,6 +54,29 @@ const verifyToken = (req, res, next) => {
 
 app.post('/login', (req, res) => {
   // CODE FOR TASK 2.5 -------------------------------------------
+
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res
+      .status(401)
+      .json({ error: 'Username and password are required' });
+  }
+
+  if (username !== USER.username || password !== USER.password) {
+    return res.status(401).json({ error: 'Invalid username or password' });
+  }
+
+  try {
+    const token = jwt.sign({ username }, process.env.SECRET_KEY, {
+      expiresIn: '1d',
+    });
+    res.json({ token });
+  } catch (error) {
+    // console.error('Token Generation Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+
   // END OF CODE FOR TASK 2.5 ------------------------------------
 });
 
