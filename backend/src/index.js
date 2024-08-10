@@ -32,6 +32,23 @@ const secretKey = process.env.SECRET_KEY;
 
 const verifyToken = (req, res, next) => {
   // CODE FOR TASK 2.4 -------------------------------------------
+
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(403).json({ error: 'Token not provided' });
+  }
+
+  jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(500).json({ error: 'Token verification failed' });
+    }
+
+    req.user = user;
+    next();
+  });
+
   // END OF CODE FOR TASK 2.4 ------------------------------------
 };
 
